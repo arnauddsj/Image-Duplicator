@@ -14,7 +14,7 @@ const nameRef = JSON.parse(fs.readFileSync(listeFile, 'utf8'));
 // Iterate over the objects
 Object.keys(nameRef).forEach(key => {
 
-    let refName = `${__dirname}/images/${nameRef[key].TitleOfColumn}.jpg`; //Change TitleOfColumn with the name of your key
+    let refName = `${destDir}/${nameRef[key].TitleOfColumn}.jpg`; //Change TitleOfColumn with the name of your key
 
     //Start copy function 
     fs.copyFileSync(src, path.join(destDir, filename));
@@ -23,6 +23,8 @@ Object.keys(nameRef).forEach(key => {
     fs.rename(`${destDir}/${filename}`, refName, function (err) {
         if (err) {
             console.log('ERROR: ' + err);
+        } else {
+            console.log('Picture created and renamed with success!');
         };
     });
 });
